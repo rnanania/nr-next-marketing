@@ -243,6 +243,11 @@ Study against these versions — they change defaults and APIs vs. older tutoria
 - [ ] Day 17 — Mock Interview: Technical                 → day17_mock_technical.md
 - [ ] Day 18 — Mock Interview: Behavioral + Stakeholder  → day18_mock_behavioral.md
 
+> **Bonus —** [`feature_tour.md`](feature_tour.md): a hands-on, runnable tour of all
+> the Next.js 16 features in this app (rendering modes, PPR, edge A/B, Cache
+> Components, Server Actions, SEO-as-code, CMS boundary), each proven live with
+> browser / `curl` / Vercel checks. Great for a fast end-to-end refresher.
+
 ---
 
 ## KEY RESOURCES

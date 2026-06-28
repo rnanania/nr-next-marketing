@@ -62,14 +62,18 @@ Prerender; `ƒ /sitemap.xml`, `ƒ /opengraph-image`, `ƒ /api/revalidate` are dy
 
 ## Step 4 — Point the site at its real URL ▶️ + ✅
 
-Canonicals, OG tags, and the sitemap use `NEXT_PUBLIC_SITE_URL` (defaults to the
-placeholder `https://nr-next-marketing.vercel.app`). After the first deploy:
+Canonicals, OG tags, and the sitemap use `NEXT_PUBLIC_SITE_URL`. Its fallback in
+`src/lib/site.ts` is now the production URL `https://nr-next-marketing.vercel.app`
+(previously a `pace.example.com` placeholder — fixed), so canonicals/OG/sitemap are
+**correct out of the box** with no env var. You only *need* to set this var when the
+real origin differs from that fallback:
 
 1. Vercel → Project → **Settings → Environment Variables** → add:
-   `NEXT_PUBLIC_SITE_URL = https://nr-next-marketing.vercel.app` (Production + Preview).
+   `NEXT_PUBLIC_SITE_URL = https://your-custom-domain.com` (Production + Preview).
 2. **Redeploy** (Deployments → ⋯ → Redeploy) so the new value is baked in.
 
-(Once you add a custom domain, set `NEXT_PUBLIC_SITE_URL` to that instead.)
+(Setting it explicitly — even to the Vercel URL — is still good practice; it makes the
+canonical origin obvious and survives any future change to the code fallback.)
 
 ---
 
@@ -87,10 +91,13 @@ On the production URL, exercise the features built so far:
 | A11y (8) | Tab → skip link; focus rings; contrast in both themes |
 | CWV / images (9) | `/` hero is AVIF via `/_next/image`; lazy form on `/design-system` |
 | SEO (10) | `/sitemap.xml`, `/robots.txt`, `/opengraph-image` (PNG) |
-| Contentful (11) | `/landing`; preview: `/api/preview?secret=dev-secret` → drafts + banner |
+| Contentful (11) | `/landing`; preview: `/api/preview?secret=$REVALIDATE_SECRET` → drafts + banner |
 | Marketing/A-B (12) | `/campaign` — variant differs per visitor (clear cookies to re-bucket); UTM in form |
 
-💡 The `secret` defaults to `dev-secret` unless you set `REVALIDATE_SECRET` (Step 6).
+💡 `REVALIDATE_SECRET` is **now set in this project's Vercel env**, so on production
+`dev-secret` returns **401** — use the real value. The fallback to `dev-secret`
+(`src/lib/server/env.ts`) only applies **locally** when the env var is unset. The same
+secret gates **both** `/api/revalidate` and `/api/preview`, so rotating it secures both.
 
 ---
 
@@ -136,7 +143,8 @@ the project's *Deployments* tab within seconds.
 > **manual-only** (`workflow_dispatch`) — an opt-in alternative for Actions-driven
 > deploys; it does **not** run on push, so it won't double-deploy or fail. To use it,
 > add `VERCEL_TOKEN`/`VERCEL_ORG_ID`/`VERCEL_PROJECT_ID` secrets and run it from the
-> Actions tab.
+> Actions tab. It has a **preflight guard** that fails fast with a clear message if
+> those secrets are missing (instead of the cryptic `--token, but it's missing a value`).
 
 ## Rollback
 
@@ -149,7 +157,10 @@ per-feature rollback with no deploy at all.
 ## Status log
 
 - [x] Repo on GitHub, `main` pushed, builds clean — ✅
-- [ ] Step 1–3: imported + first deploy (production URL: __________)
-- [ ] Step 4: `NEXT_PUBLIC_SITE_URL` set + redeployed
-- [ ] Step 5: live verification pass
-- [ ] Step 6: real integrations (when needed)
+- [x] Step 1–3: imported + first deploy — ✅ live at **https://nr-next-marketing.vercel.app**
+- [x] Step 4: canonical origin correct — code fallback now points at the prod URL
+      (set `NEXT_PUBLIC_SITE_URL` explicitly only if/when moving to a custom domain)
+- [x] Step 6 (partial): `REVALIDATE_SECRET` set in Vercel (gates revalidate + preview)
+- [x] Step 5: live verification pass — see [`feature_tour.md`](feature_tour.md) for the
+      reproducible `curl`/browser checks across all features
+- [ ] Step 6 (rest): Contentful / GTM / Marketo env vars (when you want live services)
