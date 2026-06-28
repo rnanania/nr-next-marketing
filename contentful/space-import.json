@@ -1,0 +1,128 @@
+{
+  "contentTypes": [
+    {
+      "sys": { "id": "landingPage", "type": "ContentType" },
+      "name": "Landing Page",
+      "description": "A page composed of an ordered list of blocks (page-builder).",
+      "displayField": "title",
+      "fields": [
+        { "id": "slug", "name": "Slug", "type": "Symbol", "localized": false, "required": true, "validations": [{ "unique": true }], "disabled": false, "omitted": false },
+        { "id": "title", "name": "Title", "type": "Symbol", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false },
+        {
+          "id": "blocks", "name": "Blocks", "type": "Array", "localized": false, "required": false, "validations": [], "disabled": false, "omitted": false,
+          "items": { "type": "Link", "linkType": "Entry", "validations": [{ "linkContentType": ["heroBlock", "featureListBlock", "richTextBlock", "ctaBlock"] }] }
+        }
+      ]
+    },
+    {
+      "sys": { "id": "heroBlock", "type": "ContentType" },
+      "name": "Hero Block",
+      "description": "Hero section with heading, subheading, and a CTA.",
+      "displayField": "heading",
+      "fields": [
+        { "id": "heading", "name": "Heading", "type": "Symbol", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false },
+        { "id": "subheading", "name": "Subheading", "type": "Symbol", "localized": false, "required": false, "validations": [], "disabled": false, "omitted": false },
+        { "id": "ctaLabel", "name": "CTA Label", "type": "Symbol", "localized": false, "required": false, "validations": [], "disabled": false, "omitted": false },
+        { "id": "ctaHref", "name": "CTA Href", "type": "Symbol", "localized": false, "required": false, "validations": [], "disabled": false, "omitted": false }
+      ]
+    },
+    {
+      "sys": { "id": "featureListBlock", "type": "ContentType" },
+      "name": "Feature List Block",
+      "description": "A titled list of feature items.",
+      "displayField": "title",
+      "fields": [
+        { "id": "title", "name": "Title", "type": "Symbol", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false },
+        {
+          "id": "items", "name": "Items", "type": "Array", "localized": false, "required": false, "validations": [], "disabled": false, "omitted": false,
+          "items": { "type": "Link", "linkType": "Entry", "validations": [{ "linkContentType": ["featureItem"] }] }
+        }
+      ]
+    },
+    {
+      "sys": { "id": "featureItem", "type": "ContentType" },
+      "name": "Feature Item",
+      "description": "A single feature: name + description.",
+      "displayField": "name",
+      "fields": [
+        { "id": "name", "name": "Name", "type": "Symbol", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false },
+        { "id": "description", "name": "Description", "type": "Text", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false }
+      ]
+    },
+    {
+      "sys": { "id": "richTextBlock", "type": "ContentType" },
+      "name": "Rich Text Block",
+      "description": "Plain-text body (NOT a Contentful Rich Text field — the app reads it as a string).",
+      "displayField": "body",
+      "fields": [
+        { "id": "body", "name": "Body", "type": "Symbol", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false }
+      ]
+    },
+    {
+      "sys": { "id": "ctaBlock", "type": "ContentType" },
+      "name": "CTA Block",
+      "description": "A call-to-action button (primary or secondary).",
+      "displayField": "text",
+      "fields": [
+        { "id": "text", "name": "Text", "type": "Symbol", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false },
+        { "id": "href", "name": "Href", "type": "Symbol", "localized": false, "required": true, "validations": [], "disabled": false, "omitted": false },
+        { "id": "variant", "name": "Variant", "type": "Symbol", "localized": false, "required": true, "validations": [{ "in": ["primary", "secondary"] }], "disabled": false, "omitted": false }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "sys": { "id": "fitem-fast", "type": "Entry", "contentType": { "sys": { "id": "featureItem", "type": "Link", "linkType": "ContentType" } } },
+      "fields": { "name": { "en-US": "Fast" }, "description": { "en-US": "Static shell + edge caching keep it instant." } }
+    },
+    {
+      "sys": { "id": "fitem-fresh", "type": "Entry", "contentType": { "sys": { "id": "featureItem", "type": "Link", "linkType": "ContentType" } } },
+      "fields": { "name": { "en-US": "Fresh" }, "description": { "en-US": "Publish from the CMS with no redeploy." } }
+    },
+    {
+      "sys": { "id": "fitem-typesafe", "type": "Entry", "contentType": { "sys": { "id": "featureItem", "type": "Link", "linkType": "ContentType" } } },
+      "fields": { "name": { "en-US": "Type-safe" }, "description": { "en-US": "Content validated end to end with zod." } }
+    },
+    {
+      "sys": { "id": "hero-1", "type": "Entry", "contentType": { "sys": { "id": "heroBlock", "type": "Link", "linkType": "ContentType" } } },
+      "fields": {
+        "heading": { "en-US": "Launch campaigns in minutes" },
+        "subheading": { "en-US": "A CMS-driven site marketers can edit without engineering." },
+        "ctaLabel": { "en-US": "See pricing" },
+        "ctaHref": { "en-US": "/pricing" }
+      }
+    },
+    {
+      "sys": { "id": "flist-1", "type": "Entry", "contentType": { "sys": { "id": "featureListBlock", "type": "Link", "linkType": "ContentType" } } },
+      "fields": {
+        "title": { "en-US": "Why teams choose Pace" },
+        "items": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "fitem-fast" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "fitem-fresh" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "fitem-typesafe" } }
+        ] }
+      }
+    },
+    {
+      "sys": { "id": "rich-1", "type": "Entry", "contentType": { "sys": { "id": "richTextBlock", "type": "Link", "linkType": "ContentType" } } },
+      "fields": { "body": { "en-US": "Trusted by teams shipping landing pages every week." } }
+    },
+    {
+      "sys": { "id": "cta-1", "type": "Entry", "contentType": { "sys": { "id": "ctaBlock", "type": "Link", "linkType": "ContentType" } } },
+      "fields": { "text": { "en-US": "Start free" }, "href": { "en-US": "/subscribe" }, "variant": { "en-US": "primary" } }
+    },
+    {
+      "sys": { "id": "landing-ship-faster", "type": "Entry", "contentType": { "sys": { "id": "landingPage", "type": "Link", "linkType": "ContentType" } } },
+      "fields": {
+        "slug": { "en-US": "ship-faster" },
+        "title": { "en-US": "Ship marketing pages faster" },
+        "blocks": { "en-US": [
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "hero-1" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "flist-1" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "rich-1" } },
+          { "sys": { "type": "Link", "linkType": "Entry", "id": "cta-1" } }
+        ] }
+      }
+    }
+  ]
+}
