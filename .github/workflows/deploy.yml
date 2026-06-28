@@ -1,0 +1,49 @@
+name: Deploy (Vercel)
+
+# - Every PR  → a PREVIEW deploy (unique URL).
+# - Push to main → a PRODUCTION deploy.
+#
+# Note: Vercel's native Git integration already does preview-per-PR + prod-on-main
+# automatically once you import the repo. This explicit CLI workflow is the
+# portable equivalent. Required repo secrets: VERCEL_TOKEN, VERCEL_ORG_ID,
+# VERCEL_PROJECT_ID.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm i -g vercel@latest
+
+      # ---- Preview (PRs) ----
+      - name: Pull Vercel env (preview)
+        if: github.event_name == 'pull_request'
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build (preview)
+        if: github.event_name == 'pull_request'
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy preview
+        if: github.event_name == 'pull_request'
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+      # ---- Production (main) ----
+      - name: Pull Vercel env (production)
+        if: github.ref == 'refs/heads/main'
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build (production)
+        if: github.ref == 'refs/heads/main'
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy production
+        if: github.ref == 'refs/heads/main'
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
