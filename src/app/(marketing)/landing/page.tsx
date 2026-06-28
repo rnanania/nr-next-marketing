@@ -4,7 +4,6 @@
 // which resolves each by its discriminant. Page-builder pattern, type-safe end to
 // end with zod. When draft mode is on, editors see unpublished content + a banner.
 
-import Link from "next/link";
 import { getLandingPage } from "@/lib/cms/contentful";
 import BlockRenderer from "@/components/block-renderer";
 
@@ -21,10 +20,14 @@ export default async function LandingPage() {
       {preview ? (
         <div className="flex items-center justify-between rounded-md border border-amber-500/40 bg-amber-500/10 px-4 py-2 text-sm">
           <span>🚧 Preview mode — showing unpublished Contentful drafts.</span>
-          {/* prefetch={false} so a hover/prefetch doesn't accidentally drop the cookie */}
-          <Link href="/api/preview/disable" prefetch={false} className="font-medium underline">
+          {/* Plain <a>, NOT <Link>: toggling Draft Mode runs in a Route Handler and
+              must happen via a full (hard) navigation. A <Link> soft-navigates —
+              the Router Cache would re-show the preview=true payload, so the banner
+              never clears ("Exit preview does nothing"). A hard GET lets the handler
+              clear the __prerender_bypass cookie and redirect to a fresh render. */}
+          <a href="/api/preview/disable" className="font-medium underline">
             Exit preview
-          </Link>
+          </a>
         </div>
       ) : null}
 
