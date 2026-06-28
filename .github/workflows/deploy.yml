@@ -29,6 +29,16 @@ jobs:
         with: { node-version: 22 }
       - run: npm i -g vercel@latest
 
+      # Fail fast with a clear message if the deploy secrets aren't configured,
+      # instead of the cryptic "--token, but it's missing a value" from the CLI.
+      - name: Check Vercel secrets
+        run: |
+          : "${VERCEL_TOKEN:?Missing repo secret VERCEL_TOKEN — add VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID (or rely on Vercel's native Git integration and don't run this workflow). See docs/deployment_vercel.md}"
+          : "${VERCEL_ORG_ID:?Missing repo secret VERCEL_ORG_ID}"
+          : "${VERCEL_PROJECT_ID:?Missing repo secret VERCEL_PROJECT_ID}"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
       # ---- Preview (manual: target=preview) ----
       - name: Pull Vercel env (preview)
         if: inputs.target == 'preview'
