@@ -163,11 +163,11 @@ npm run dev
 ```
 GET /robots.txt
   User-Agent: *  Allow: /  Disallow: /api/
-  Host: https://pace.example.com
-  Sitemap: https://pace.example.com/sitemap.xml
+  Host: https://nr-next-marketing.vercel.app
+  Sitemap: https://nr-next-marketing.vercel.app/sitemap.xml
 
 GET /sitemap.xml  → 10 <loc> URLs (7 static + 3 blog posts), all absolute
-  https://pace.example.com, …/pricing, …/blog, …/blog/why-nextjs-for-marketing-sites
+  https://nr-next-marketing.vercel.app, …/pricing, …/blog, …/blog/why-nextjs-for-marketing-sites
 ```
 **What this proves:** crawlers get an allow-list pointing at a complete, code-generated
 sitemap covering static pages *and* CMS content.
@@ -178,16 +178,16 @@ GET /opengraph-image  →  type=image/png  1200×630  82 KB  (PNG)
 ```
 And the home `<head>` references it:
 ```
-og:image content="https://pace.example.com/opengraph-image?<hash>"
+og:image content="https://nr-next-marketing.vercel.app/opengraph-image?<hash>"
 ```
 **What this proves:** `next/og` rendered a branded PNG at build, and the file
 convention auto-wired `og:image` — every shared link gets a preview card.
 
 ### C. Per-page metadata + canonical
 ```
-HOME : <link rel="canonical" href="https://pace.example.com">
+HOME : <link rel="canonical" href="https://nr-next-marketing.vercel.app">
        og:title="Pace — Ship marketing pages fast"  twitter:card="summary_large_image"
-POST : <link rel="canonical" href="https://pace.example.com/blog/why-nextjs-for-marketing-sites">
+POST : <link rel="canonical" href="https://nr-next-marketing.vercel.app/blog/why-nextjs-for-marketing-sites">
        og:type="article"  article:published_time present
 ```
 **What this proves:** absolute canonicals (via `metadataBase`) and route-specific OG —

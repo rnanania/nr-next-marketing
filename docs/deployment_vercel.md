@@ -63,7 +63,7 @@ Prerender; `ƒ /sitemap.xml`, `ƒ /opengraph-image`, `ƒ /api/revalidate` are dy
 ## Step 4 — Point the site at its real URL ▶️ + ✅
 
 Canonicals, OG tags, and the sitemap use `NEXT_PUBLIC_SITE_URL` (defaults to the
-placeholder `https://pace.example.com`). After the first deploy:
+placeholder `https://nr-next-marketing.vercel.app`). After the first deploy:
 
 1. Vercel → Project → **Settings → Environment Variables** → add:
    `NEXT_PUBLIC_SITE_URL = https://nr-next-marketing.vercel.app` (Production + Preview).

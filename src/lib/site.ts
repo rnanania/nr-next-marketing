@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "Pace",
   // In prod this is your canonical origin (env-driven). metadataBase below makes
   // every relative canonical/OG URL absolute against it.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pace.example.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://nr-next-marketing.vercel.app",
   description:
     "Ship high-performance, CMS-driven marketing pages fast with Next.js.",
   twitter: "@pace",
