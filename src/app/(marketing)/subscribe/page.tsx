@@ -7,7 +7,7 @@
 import SubscribeForm from "@/components/subscribe-form";
 
 export const metadata = {
-  title: "Subscribe — Acme",
+  title: "Subscribe — Pace",
   description: "Newsletter signup powered by a Server Action.",
 };
 

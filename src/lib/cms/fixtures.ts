@@ -29,7 +29,7 @@ function landing(titleSuffix = ""): ContentfulResponse {
                 {
                   __typename: "FeatureListBlock",
                   sys: { id: "f1" },
-                  title: "Why teams choose Acme",
+                  title: "Why teams choose Pace",
                   itemsCollection: {
                     items: [
                       { name: "Fast", description: "Static shell + edge caching keep it instant." },

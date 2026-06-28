@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getPosts } from "@/lib/posts";
 
 export const metadata = {
-  title: "Blog — Acme",
+  title: "Blog — Pace",
   description: "Notes on building marketing sites with Next.js.",
 };
 

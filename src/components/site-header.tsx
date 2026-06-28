@@ -30,7 +30,7 @@ export default function SiteHeader() {
     <header className="border-b border-black/10 dark:border-white/15">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <Link href="/" className="text-lg font-bold tracking-tight">
-          Acme<span className="text-brand-600 dark:text-brand-300">.</span>
+          Pace<span className="text-brand-600 dark:text-brand-300">.</span>
         </Link>
 
         {/* Desktop nav — only at lg+, where the row fits. Below that we use the

@@ -1,7 +1,7 @@
 // Static Server Component → "/pricing". Pre-rendered at build (SSG).
 
 export const metadata = {
-  title: "Pricing — Acme",
+  title: "Pricing — Pace",
   description: "Simple, transparent pricing.",
 };
 

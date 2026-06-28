@@ -15,7 +15,7 @@ import { connection } from "next/server";
 import SlowHeadlines from "@/components/slow-headlines";
 
 export const metadata = {
-  title: "News — Acme",
+  title: "News — Pace",
   description: "Static shell + streamed dynamic holes (PPR).",
 };
 

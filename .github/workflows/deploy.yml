@@ -1,17 +1,20 @@
-name: Deploy (Vercel)
+name: Deploy (Vercel) — manual / optional
 
-# - Every PR  → a PREVIEW deploy (unique URL).
-# - Push to main → a PRODUCTION deploy.
-#
-# Note: Vercel's native Git integration already does preview-per-PR + prod-on-main
-# automatically once you import the repo. This explicit CLI workflow is the
-# portable equivalent. Required repo secrets: VERCEL_TOKEN, VERCEL_ORG_ID,
-# VERCEL_PROJECT_ID.
+# Auto-deploy is handled by VERCEL'S NATIVE GIT INTEGRATION (preview-per-PR +
+# prod-on-main on every push) — see docs/deployment_vercel.md. This workflow is
+# therefore NOT on push/PR (it would double-deploy and fail without secrets).
+# It's kept as an opt-in, run-it-yourself alternative for Actions-driven deploys.
+# To use it: add repo secrets VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID,
+# then run it from the Actions tab (workflow_dispatch).
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Deploy target"
+        type: choice
+        options: [preview, production]
+        default: preview
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -26,24 +29,24 @@ jobs:
         with: { node-version: 22 }
       - run: npm i -g vercel@latest
 
-      # ---- Preview (PRs) ----
+      # ---- Preview (manual: target=preview) ----
       - name: Pull Vercel env (preview)
-        if: github.event_name == 'pull_request'
+        if: inputs.target == 'preview'
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build (preview)
-        if: github.event_name == 'pull_request'
+        if: inputs.target == 'preview'
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy preview
-        if: github.event_name == 'pull_request'
+        if: inputs.target == 'preview'
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
-      # ---- Production (main) ----
+      # ---- Production (manual: target=production) ----
       - name: Pull Vercel env (production)
-        if: github.ref == 'refs/heads/main'
+        if: inputs.target == 'production'
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build (production)
-        if: github.ref == 'refs/heads/main'
+        if: inputs.target == 'production'
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy production
-        if: github.ref == 'refs/heads/main'
+        if: inputs.target == 'production'
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

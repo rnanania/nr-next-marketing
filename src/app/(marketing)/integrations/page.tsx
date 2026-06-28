@@ -11,7 +11,7 @@ import { getRemoteTodos } from "@/lib/remote";
 import RefreshButton from "@/components/refresh-button";
 
 export const metadata = {
-  title: "Integrations — Acme",
+  title: "Integrations — Pace",
   description: "Third-party API proxied + cached, with tag-based revalidation.",
 };
 

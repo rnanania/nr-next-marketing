@@ -16,7 +16,7 @@ import { readUtmParams } from "@/lib/utm";
 import MarketoForm from "@/components/marketo-form";
 
 export const metadata = {
-  title: "Campaign — Acme",
+  title: "Campaign — Pace",
   description: "Campaign landing page: edge A/B variant + UTM attribution + lead form.",
 };
 

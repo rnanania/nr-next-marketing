@@ -65,7 +65,7 @@ export default function ContactForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="ada@acme.com" {...field} />
+                <Input type="email" placeholder="ada@pace.com" {...field} />
               </FormControl>
               <FormDescription>We never share your email.</FormDescription>
               <FormMessage />

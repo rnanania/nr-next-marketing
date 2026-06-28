@@ -7,7 +7,7 @@ async function fetchHeadlines(): Promise<string[]> {
   await connection(); // defer to request time so it streams (a real dynamic hole)
   await new Promise((r) => setTimeout(r, 2000)); // simulate slow API
   return [
-    "Acme launches new marketing CMS integration",
+    "Pace launches new marketing CMS integration",
     "Core Web Vitals improve 30% after edge rollout",
     "Customers ship landing pages 2x faster",
   ];

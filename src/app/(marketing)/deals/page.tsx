@@ -10,7 +10,7 @@
 import { cacheLife } from "next/cache";
 
 export const metadata = {
-  title: "Deals — Acme",
+  title: "Deals — Pace",
   description: "Limited-time offers (cached, revalidates periodically).",
 };
 

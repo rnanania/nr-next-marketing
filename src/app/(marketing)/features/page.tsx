@@ -13,7 +13,7 @@ import FeedbackWall from "@/components/feedback-wall";
 import type { Feedback } from "@/lib/feedback-actions";
 
 export const metadata = {
-  title: "Features — Acme",
+  title: "Features — Pace",
   description: "Filterable features + an optimistic feedback wall (React 19).",
 };
 

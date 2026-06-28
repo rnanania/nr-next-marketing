@@ -240,7 +240,7 @@ on large codebases). Same semantics, drop-in, faster CI.
 ```
 status=200
 hero heading   : 1   ("Launch campaigns in minutes")
-featureList    : 1   ("Why teams choose Acme")
+featureList    : 1   ("Why teams choose Pace")
 cta block      : 1   ("Start free")
 richText block : 1   ("Trusted by teams shipping…")
 ```

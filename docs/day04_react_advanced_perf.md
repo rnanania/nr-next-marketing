@@ -235,7 +235,7 @@ violations.)
 component. The served HTML shows it landed in `<head>`:
 ```
 <head> … <meta name="x-demo" content="react-19-metadata-hoisting"/>
-        <title>Features — Acme</title> … </head>
+        <title>Features — Pace</title> … </head>
 x-demo before </head>: true
 ```
 **What this proves:** React 19 hoists `<meta>`/`<title>`/`<link>` from anywhere in

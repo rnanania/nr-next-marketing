@@ -9,7 +9,7 @@ import { getPosts } from "@/lib/posts";
 import hero from "@/images/hero.jpg";
 
 export const metadata = {
-  title: "Acme — Ship marketing pages fast",
+  title: "Pace — Ship marketing pages fast",
   description: "A demo marketing site built with the Next.js 16 App Router.",
 };
 
@@ -75,7 +75,7 @@ export default async function HomePage() {
             - format negotiation (AVIF/WebP) is automatic via next.config images. */}
         <Image
           src={hero}
-          alt="Abstract Acme brand artwork"
+          alt="Abstract Pace brand artwork"
           priority
           placeholder="blur"
           sizes="(min-width: 1024px) 50vw, 100vw"

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 export const metadata = {
-  title: "Showcase — Acme",
+  title: "Showcase — Pace",
   description: "Responsive hero + feature grid themed via Tailwind v4 @theme.",
 };
 
@@ -48,7 +48,7 @@ export default function ShowcasePage() {
       {/* FEATURE GRID — a @container, so cards reflow on the CONTAINER's width.
           Resize this region (not just the window) and the columns change. */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold tracking-tight">Why teams pick Acme</h2>
+        <h2 className="text-2xl font-semibold tracking-tight">Why teams pick Pace</h2>
         <div className="@container">
           <ul className="grid grid-cols-1 gap-4 @md:grid-cols-2 @4xl:grid-cols-4">
             {features.map((f) => (

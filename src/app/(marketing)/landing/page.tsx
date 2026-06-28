@@ -9,7 +9,7 @@ import { getLandingPage } from "@/lib/cms/contentful";
 import BlockRenderer from "@/components/block-renderer";
 
 export const metadata = {
-  title: "Landing — Acme",
+  title: "Landing — Pace",
   description: "Type-safe, CMS-driven page built from validated Contentful blocks.",
 };
 

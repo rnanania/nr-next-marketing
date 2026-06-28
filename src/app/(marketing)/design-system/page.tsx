@@ -21,7 +21,7 @@ import ToastDemo from "@/components/toast-demo";
 import ContactForm from "@/components/lazy-contact-form";
 
 export const metadata = {
-  title: "Design System — Acme",
+  title: "Design System — Pace",
   description: "shadcn/ui + Radix component gallery, themed via Tailwind v4 @theme.",
 };
 

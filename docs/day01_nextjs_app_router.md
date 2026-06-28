@@ -235,7 +235,7 @@ router.push("/thank-you");
 ```tsx
 // Static metadata
 export const metadata = {
-  title: "Pricing — Acme",
+  title: "Pricing — Pace",
   description: "Simple, transparent pricing.",
 };
 
@@ -354,7 +354,7 @@ Fetching the raw HTML of `/` (no JS executed) shows the data is **already there*
 ```
 team count text present: true     →  "Trusted by 10+ teams"
 post title present:       true     →  "Server vs Client Components"
-footer year in HTML:      2026     →  © <!-- -->2026<!-- --> Acme Inc.
+footer year in HTML:      2026     →  © <!-- -->2026<!-- --> Pace Inc.
 ```
 **What this proves:** the fetch and `new Date().getFullYear()` ran on the **server**; the browser
 receives finished HTML. No client-side fetch, no loading spinner, great for SEO. (The `<!-- -->`
@@ -430,7 +430,7 @@ if (!post) notFound();                  // → renders the 404
 ```
 Observed:
 ```
-200  /blog/why-nextjs-for-marketing-sites   (title: "Why Next.js... — Acme")
+200  /blog/why-nextjs-for-marketing-sites   (title: "Why Next.js... — Pace")
 404  /blog/does-not-exist
 ```
 **What this proves:** the slug is read from the awaited Promise; a missing slug triggers `notFound()`
@@ -439,9 +439,9 @@ and a real 404 status (not a 200 with an error message).
 ### F. Per-page metadata (SEO)
 Each page exports `metadata` (static) or `generateMetadata` (dynamic). Observed `<title>` per route:
 ```
-/         → "Acme — Ship marketing pages fast"
-/pricing  → "Pricing — Acme"
-/blog/...  → "Why Next.js is great for marketing sites — Acme"   (from generateMetadata)
+/         → "Pace — Ship marketing pages fast"
+/pricing  → "Pricing — Pace"
+/blog/...  → "Why Next.js is great for marketing sites — Pace"   (from generateMetadata)
 ```
 **What this proves:** titles/descriptions are per-route and data-driven — the foundation for Day 10 SEO.
 

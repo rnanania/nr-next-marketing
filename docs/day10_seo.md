@@ -33,13 +33,13 @@ Static per page, or dynamic from data:
 
 ```tsx
 // static (a page)
-export const metadata = { title: "Pricing — Acme", description: "…",
+export const metadata = { title: "Pricing — Pace", description: "…",
   alternates: { canonical: "/pricing" } };
 
 // dynamic (per slug)
 export async function generateMetadata({ params }): Promise<Metadata> {
   const post = await getPost((await params).slug);
-  return { title: `${post.title} — Acme`, description: post.excerpt,
+  return { title: `${post.title} — Pace`, description: post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` } };
 }
 ```
@@ -48,7 +48,7 @@ Set **`metadataBase`** once in the root layout so relative URLs resolve to absol
 
 ```tsx
 export const metadata = { metadataBase: new URL(siteConfig.url),
-  title: { default: "Acme — …", template: "%s" }, /* + openGraph/twitter defaults */ };
+  title: { default: "Pace — …", template: "%s" }, /* + openGraph/twitter defaults */ };
 ```
 
 The `title.template` lets child pages set a short title that's wrapped site-wide; a
@@ -163,11 +163,11 @@ npm run dev
 ```
 GET /robots.txt
   User-Agent: *  Allow: /  Disallow: /api/
-  Host: https://acme.example.com
-  Sitemap: https://acme.example.com/sitemap.xml
+  Host: https://pace.example.com
+  Sitemap: https://pace.example.com/sitemap.xml
 
 GET /sitemap.xml  → 10 <loc> URLs (7 static + 3 blog posts), all absolute
-  https://acme.example.com, …/pricing, …/blog, …/blog/why-nextjs-for-marketing-sites
+  https://pace.example.com, …/pricing, …/blog, …/blog/why-nextjs-for-marketing-sites
 ```
 **What this proves:** crawlers get an allow-list pointing at a complete, code-generated
 sitemap covering static pages *and* CMS content.
@@ -178,16 +178,16 @@ GET /opengraph-image  →  type=image/png  1200×630  82 KB  (PNG)
 ```
 And the home `<head>` references it:
 ```
-og:image content="https://acme.example.com/opengraph-image?<hash>"
+og:image content="https://pace.example.com/opengraph-image?<hash>"
 ```
 **What this proves:** `next/og` rendered a branded PNG at build, and the file
 convention auto-wired `og:image` — every shared link gets a preview card.
 
 ### C. Per-page metadata + canonical
 ```
-HOME : <link rel="canonical" href="https://acme.example.com">
-       og:title="Acme — Ship marketing pages fast"  twitter:card="summary_large_image"
-POST : <link rel="canonical" href="https://acme.example.com/blog/why-nextjs-for-marketing-sites">
+HOME : <link rel="canonical" href="https://pace.example.com">
+       og:title="Pace — Ship marketing pages fast"  twitter:card="summary_large_image"
+POST : <link rel="canonical" href="https://pace.example.com/blog/why-nextjs-for-marketing-sites">
        og:type="article"  article:published_time present
 ```
 **What this proves:** absolute canonicals (via `metadataBase`) and route-specific OG —
