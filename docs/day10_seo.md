@@ -135,7 +135,7 @@ discoverable without hand-editing XML.
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-Added to the Day 1–9 project (`c1_study/c1-marketing/`):
+Added to the Day 1–9 project (`nr-next-marketing/`):
 
 | Concept | Where |
 |---|---|
@@ -150,7 +150,7 @@ Added to the Day 1–9 project (`c1_study/c1-marketing/`):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev
 # /sitemap.xml · /robots.txt · /opengraph-image · view-source on / and a blog post
 ```

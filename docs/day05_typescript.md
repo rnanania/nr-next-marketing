@@ -1,7 +1,7 @@
 # Day 5 — TypeScript for React/Next (TS 5.9, eye on TS 7 native)
 
 > Target: TypeScript **5.9**, React **19.2**, Next **16.2**. Builds on the Day 1–4
-> project (`c1_study/c1-marketing/`). Theme: **type-safe end to end** — model CMS
+> project (`nr-next-marketing/`). Theme: **type-safe end to end** — model CMS
 > content once, validate untrusted data at the boundary, and let the compiler
 > enforce completeness. Direct prep for Day 11 (Contentful).
 
@@ -179,7 +179,7 @@ adopt it for **speed** (CI gates, big monorepos, editor latency), not new featur
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-Added to the Day 1–4 project (`c1_study/c1-marketing/`):
+Added to the Day 1–4 project (`nr-next-marketing/`):
 
 | Concept | Where |
 |---|---|
@@ -192,7 +192,7 @@ Added to the Day 1–4 project (`c1_study/c1-marketing/`):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev                 # http://localhost:3000/landing
 npx tsc --noEmit            # classic typecheck (clean)
 npx tsgo --noEmit           # TS 7 native typecheck (clean, faster)

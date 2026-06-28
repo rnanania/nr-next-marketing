@@ -1,7 +1,7 @@
 # Day 3 — Data Fetching, Caching & Third-Party APIs
 
 > Target: Next.js **16.2**, React **19.2**. Builds on the Day 1/2 project
-> (`c1_study/c1-marketing/`). Day 2 was *where* a page renders (static/ISR/PPR);
+> (`nr-next-marketing/`). Day 2 was *where* a page renders (static/ISR/PPR);
 > Day 3 is *how it gets its data* — fetching, the opt-in caching model, route
 > handlers, server actions, and talking to third-party APIs safely.
 
@@ -202,7 +202,7 @@ Then cache + tag the accessor (`getRemoteTodos`) and expose it both to pages
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-All added to the Day 1/2 project (`c1_study/c1-marketing/`):
+All added to the Day 1/2 project (`nr-next-marketing/`):
 
 | Concept | Where |
 |---|---|
@@ -218,7 +218,7 @@ All added to the Day 1/2 project (`c1_study/c1-marketing/`):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev          # http://localhost:3000 → /integrations and /subscribe
 npm run build        # see the render-type table (○ cached handler, ƒ dynamic)
 ```

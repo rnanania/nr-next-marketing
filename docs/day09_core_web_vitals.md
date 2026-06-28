@@ -146,7 +146,7 @@ have poor field INP.
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-Added to the Day 1–8 project (`c1_study/c1-marketing/`):
+Added to the Day 1–8 project (`nr-next-marketing/`):
 
 | Concept | Where |
 |---|---|
@@ -158,7 +158,7 @@ Added to the Day 1–8 project (`c1_study/c1-marketing/`):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev                 # http://localhost:3000  (hero image, lazy form)
 ANALYZE=true npm run build  # emits the bundle treemap
 ```

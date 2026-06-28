@@ -1,7 +1,7 @@
 # Day 4 — React Advanced & Performance (React 19.2)
 
 > Target: React **19.2**, Next.js **16.2**. Builds on the Day 1–3 project
-> (`c1_study/c1-marketing/`). Day 3 was server-side data; Day 4 is the **client**:
+> (`nr-next-marketing/`). Day 3 was server-side data; Day 4 is the **client**:
 > how React re-renders, how React 19 removes boilerplate (Compiler, `ref` as a
 > prop), and the new **Actions** hooks for interactive forms.
 
@@ -190,7 +190,7 @@ SEO tags — but the raw feature is real, proven below.)
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-Added to the Day 1–3 project (`c1_study/c1-marketing/`):
+Added to the Day 1–3 project (`nr-next-marketing/`):
 
 | Concept | Where |
 |---|---|
@@ -204,7 +204,7 @@ Added to the Day 1–3 project (`c1_study/c1-marketing/`):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev          # http://localhost:3000/features
 npm run build        # builds with the React Compiler (Babel) — note: a bit slower
 ```

@@ -1,7 +1,7 @@
 # C1 Interview Study Plan
 ## Senior Front-End Engineer — Marketing Website (React / Next.js / Tailwind / Contentful)
 
-> Tailored to the role in [`../job.md`](../job.md). Goal: be able to architect,
+> Tailored to the role in [`job.md`](job.md). Goal: be able to architect,
 > build, deploy, and operate a high-performance marketing site, and speak to
 > every line of the JD with depth + a personal story.
 

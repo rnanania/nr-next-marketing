@@ -120,13 +120,13 @@ changes out faster.
 |---|---|
 | **CI workflow** (lint + typecheck + test + build) | `.github/workflows/ci.yml` |
 | **Deploy workflow** (Vercel preview/prod) | `.github/workflows/deploy.yml` |
-| `typecheck` + `test` scripts | `c1_study/c1-marketing/package.json` |
+| `typecheck` + `test` scripts | `package.json` |
 | **Vitest** config + unit tests | `vitest.config.ts`, `src/**/*.test.ts` |
 | Dependabot + PR template + CHANGELOG | `.github/dependabot.yml`, `.github/pull_request_template.md`, `CHANGELOG.md` |
 
 Run the exact CI gates locally:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run lint && npm run typecheck && npm test && npm run build
 ```
 

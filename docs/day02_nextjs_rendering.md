@@ -1,7 +1,7 @@
 # Day 2 — Rendering Strategies (SSR / SSG / ISR / Streaming / PPR)
 
 > Target: Next.js **16.2**, React **19.2**. Builds on the Day 1 project
-> (`c1_study/c1-marketing/`). This is the **heart of a marketing site** — picking
+> (`nr-next-marketing/`). This is the **heart of a marketing site** — picking
 > the right rendering per page is what drives speed, SEO, and freshness.
 
 ## Recap
@@ -240,7 +240,7 @@ This is the **exact Contentful pattern** (Day 11): publish → webhook → `reva
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-All added to the Day 1 project (`c1_study/c1-marketing/`):
+All added to the Day 1 project (`nr-next-marketing/`):
 
 | Concept | Where |
 |---|---|
@@ -253,7 +253,7 @@ All added to the Day 1 project (`c1_study/c1-marketing/`):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev          # http://localhost:3000  → visit /deals and /news
 npm run build        # see the ○ / ◐ render-type table
 ```

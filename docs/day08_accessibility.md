@@ -216,7 +216,7 @@ subset) so a11y regressions fail the lint in CI.
 
 Run the checks:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npx eslint src          # jsx-a11y recommended — clean
 npm run build           # type-safe, clean
 # manual: Tab through any page (skip link → focus rings → dialog trap); VoiceOver ⌘F5

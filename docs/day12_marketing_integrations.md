@@ -150,7 +150,7 @@ Added to the Day 1–11 project:
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev
 # /campaign            → edge-assigned hero variant + Marketo form
 # /campaign?utm_source=newsletter&utm_campaign=spring → attribution + hidden fields

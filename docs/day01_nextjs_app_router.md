@@ -273,11 +273,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-Project lives at **`c1_study/c1-marketing/`** (Next 16.2.7, React 19.2.4, Tailwind v4).
+Project lives at **`nr-next-marketing/`** (Next 16.2.7, React 19.2.4, Tailwind v4).
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev          # → http://localhost:3000  (Turbopack)
 ```
 

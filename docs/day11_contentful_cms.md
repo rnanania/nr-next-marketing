@@ -189,7 +189,7 @@ Added to the Day 1–10 project (builds on the Day 5 page-builder):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev
 # published:  /landing
 # preview:    /api/preview?secret=dev-secret   → /landing (drafts + banner)

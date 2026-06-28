@@ -1,7 +1,7 @@
 # Day 6 — Tailwind CSS in Depth (v4.3)
 
 > Target: Tailwind **v4.3**, Next **16.2**. Builds on the Day 1–5 project
-> (`c1_study/c1-marketing/`). v4 is a big departure from v3 — **CSS-first config**,
+> (`nr-next-marketing/`). v4 is a big departure from v3 — **CSS-first config**,
 > a new engine, OKLCH colors, built-in container queries. Know what changed and how
 > to keep a Tailwind codebase **consistent and small** at scale.
 
@@ -177,7 +177,7 @@ recompiled CSS, just a class flip), and the new engine keeps dev/build fast.
 
 ## Build Exercise — ✅ BUILT & RUNNING
 
-Added to the Day 1–5 project (`c1_study/c1-marketing/`):
+Added to the Day 1–5 project (`nr-next-marketing/`):
 
 | Concept | Where |
 |---|---|
@@ -190,7 +190,7 @@ Added to the Day 1–5 project (`c1_study/c1-marketing/`):
 
 Run it:
 ```bash
-cd c1_study/c1-marketing
+cd nr-next-marketing
 npm run dev            # http://localhost:3000/showcase  → toggle dark in the header
 npm run build          # one small CSS file for the whole site
 ```
