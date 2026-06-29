@@ -3,7 +3,9 @@
 > How Google Tag Manager is wired into this Next.js 16 app: **non-blocking,
 > consent-gated, SPA-aware, and GDPR-withdrawable**. This is the implementation
 > reference; the conceptual write-up lives in
-> [`day12_marketing_integrations.md`](day12_marketing_integrations.md).
+> [`day12_marketing_integrations.md`](day12_marketing_integrations.md). For how GTM
+> sits alongside Vercel Web Analytics + Speed Insights, see
+> [`analytics_stack.md`](analytics_stack.md).
 
 ## The mental model (read this first)
 

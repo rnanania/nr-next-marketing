@@ -6,6 +6,7 @@ import GoogleTagManager from "@/components/google-tag-manager";
 import AnalyticsPageViews from "@/components/analytics-page-views";
 import CookieConsent from "@/components/cookie-consent";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Suspense } from "react";
 import { siteConfig, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -107,6 +108,11 @@ export default function RootLayout({
             /next entry auto-tracks App Router route changes. Beacon only fires on
             Vercel (no-op in local dev). */}
         <Analytics />
+
+        {/* Vercel Speed Insights: real-user Core Web Vitals (LCP/CLS/INP/FCP/TTFB)
+            per route. Cookieless like Analytics → no consent gate. Beacon only
+            reports on Vercel (no-op locally). Pairs with Day 9's CWV work. */}
+        <SpeedInsights />
       </body>
     </html>
   );
