@@ -37,6 +37,7 @@ const demoNav = [
   { href: "/landing", label: "Landing" },
   { href: "/integrations", label: "Integrations" },
   { href: "/subscribe", label: "Subscribe" },
+  { href: "/metrics", label: "Live Web Vitals" },
 ];
 
 export default function SiteHeader() {

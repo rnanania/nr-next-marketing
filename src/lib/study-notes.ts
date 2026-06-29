@@ -91,6 +91,12 @@ export const STUDY_NOTES: Record<string, StudyNote> = {
     summary:
       "A responsive hero + feature grid built entirely on Tailwind v4 @theme tokens (brand-*, surface, ink, radius, spacing). The whole look pulls from one place in globals.css, so it's consistent and re-themeable.",
   },
+  "/metrics": {
+    days: "Day 9 · Core Web Vitals",
+    title: "Public, self-hosted RUM",
+    summary:
+      "Real-user Core Web Vitals (LCP/INP/CLS/FCP/TTFB) measured live in your browser via Next.js's useReportWebVitals, collected through an external store and read with useSyncExternalStore. A public alternative to the private Vercel Speed Insights dashboard.",
+  },
   "/campaign": {
     days: "Day 12 · Marketing Integrations",
     title: "A/B + UTM attribution + Marketo",
