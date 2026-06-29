@@ -3,7 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import JsonLd from "@/components/json-ld";
 import GoogleTagManager from "@/components/google-tag-manager";
+import AnalyticsPageViews from "@/components/analytics-page-views";
 import CookieConsent from "@/components/cookie-consent";
+import { Analytics } from "@vercel/analytics/next";
+import { Suspense } from "react";
 import { siteConfig, siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -91,7 +94,19 @@ export default function RootLayout({
         {/* Day 12: GTM is consent-gated (loads only after Accept) and non-blocking
             via next/script (Day 9). The banner collects the GDPR/CCPA decision. */}
         <GoogleTagManager />
+        {/* SPA page_view tracking. useSearchParams must live under <Suspense> or
+            the static prerender bails (it's a dynamic, request-time read). */}
+        <Suspense fallback={null}>
+          <AnalyticsPageViews />
+        </Suspense>
         <CookieConsent />
+
+        {/* Vercel Web Analytics: first-party, cookieless traffic + page views.
+            Unlike GTM it needs NO consent gate (no cookies, GDPR-friendly), so it
+            mounts unconditionally and runs even for users who reject GTM. The
+            /next entry auto-tracks App Router route changes. Beacon only fires on
+            Vercel (no-op in local dev). */}
+        <Analytics />
       </body>
     </html>
   );

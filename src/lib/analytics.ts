@@ -8,11 +8,41 @@ const CONSENT_COOKIE = "cookie-consent";
 // --- dataLayer (GTM / GA4) ----------------------------------------------------
 type DataLayerWindow = Window & { dataLayer?: Record<string, unknown>[] };
 
+function dataLayer(): unknown[] {
+  const w = window as DataLayerWindow & { dataLayer?: unknown[] };
+  w.dataLayer = w.dataLayer || [];
+  return w.dataLayer;
+}
+
+// Custom *event* push: GTM reads `{ event, ...params }` objects to fire triggers.
 export function track(event: string, params: Record<string, unknown> = {}): void {
   if (typeof window === "undefined") return;
-  const w = window as DataLayerWindow;
-  w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({ event, ...params });
+  dataLayer().push({ event, ...params });
+}
+
+// Google Consent Mode v2 reads a DIFFERENT shape: `arguments`-style entries, e.g.
+// ["consent","update",{analytics_storage:"granted"}] — NOT an {event} object.
+// This mirrors the canonical `gtag()` stub (`function gtag(){dataLayer.push(arguments)}`).
+type ConsentState = "granted" | "denied";
+function gtag(...args: unknown[]): void {
+  if (typeof window === "undefined") return;
+  dataLayer().push(args);
+}
+
+// The four Consent Mode v2 signals, set together. Default is denied for everyone.
+function consentSignals(state: ConsentState) {
+  return {
+    ad_storage: state,
+    analytics_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+  };
+}
+
+// Note: the `default` signal (deny everything up front) is emitted inside the GTM
+// loader snippet so its ordering vs. gtm.js is guaranteed — see google-tag-manager.tsx.
+export function consentUpdate(state: ConsentState): void {
+  gtag("consent", "update", consentSignals(state));
 }
 
 // --- Consent store (readable via useSyncExternalStore) ------------------------
@@ -25,8 +55,20 @@ export function getConsent(): Consent | null {
 export function setConsent(value: Consent): void {
   if (typeof document === "undefined") return;
   document.cookie = `${CONSENT_COOKIE}=${value};path=/;max-age=${60 * 60 * 24 * 180};samesite=lax`;
-  // GTM Consent Mode update — flips storage permissions for tags downstream.
-  track("consent_update", { analytics_storage: value, ad_storage: value });
+  // If GTM is already loaded (e.g. user grants, then later toggles), tell Consent
+  // Mode the new state. On a fresh grant GTM isn't loaded yet — the loader replays
+  // the full default→update handshake itself (see google-tag-manager.tsx).
+  consentUpdate(value);
+  window.dispatchEvent(new Event("consentchange"));
+}
+
+// Withdraw consent (GDPR: withdrawal must be as easy as granting). Clears the
+// decision so the banner returns, and signals Consent Mode `denied` for any tags
+// already loaded this session. A full unload of GTM requires a reload — documented.
+export function resetConsent(): void {
+  if (typeof document === "undefined") return;
+  document.cookie = `${CONSENT_COOKIE}=;path=/;max-age=0;samesite=lax`;
+  consentUpdate("denied");
   window.dispatchEvent(new Event("consentchange"));
 }
 

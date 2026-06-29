@@ -40,14 +40,33 @@ track("generate_lead", { form: "marketo", utm_source: "newsletter" });
 
 **Consent gates loading.** Nothing analytics-related loads until the user accepts:
 a banner writes a `cookie-consent` cookie; `GoogleTagManager` reads it (reactively,
-via `useSyncExternalStore`) and only injects the GTM snippet when `granted`. On
-change we also push a **Consent Mode** update (`analytics_storage: granted`).
+via `useSyncExternalStore`) and only injects the GTM snippet when `granted`.
 
 ```tsx
 const consent = useSyncExternalStore(subscribeConsent, getConsent, () => null);
 if (consent !== "granted") return null;     // no GTM, no cookies, pre-consent
 return <Script id="gtm" strategy="afterInteractive">{/* GTM snippet */}</Script>;
 ```
+
+**Two dataLayer shapes — don't confuse them.** `track()` pushes **event objects**
+(`{ event, ...params }`) that GTM triggers fire on. Google **Consent Mode v2** reads
+a *different*, `arguments`-shaped entry via the canonical `gtag()` stub
+(`function gtag(){dataLayer.push(arguments)}`) — e.g.
+`["consent","update",{analytics_storage:"granted"}]`. Pushing
+`{event:"consent_update", …}` does **not** drive Consent Mode (an easy bug). Because
+this app **hard-gates** (GTM only loads after grant), the loader emits the whole
+handshake itself, in the required order:
+
+```js
+gtag('consent','default',{ ad_storage:'denied', analytics_storage:'denied',
+                           ad_user_data:'denied', ad_personalization:'denied' });
+gtag('consent','update', { /* all four → 'granted' */ });
+// …then the standard gtm.js loader runs.
+```
+
+`default` **must** precede `update`, and both must precede `gtm.js` — keeping the
+three in one inline snippet guarantees that ordering (vs. relying on earlier,
+separately-timed dataLayer pushes).
 
 ---
 
@@ -58,6 +77,29 @@ GTM is third-party JS — it's the classic CWV killer if loaded wrong. Rules:
 - **Consent-gated** so it doesn't even load until opt-in (also a perf win for
   rejecters).
 - Keep tags lean inside the container; prefer server-side GTM for heavy pixels.
+
+**SPA page views.** GTM's container fires a pageview **only on the initial hard
+load**. App Router `<Link>` navigations never reload the page, so without help they
+go uncounted. `AnalyticsPageViews` (a `null`-rendering client component) watches
+`usePathname()` + `useSearchParams()` and pushes a `page_view` event on each route
+change — configure a GTM trigger on that event. Firing analytics on navigation is a
+real external **side effect**, so `useEffect` is correct here (not the
+effect-then-`setState` antipattern, and not `useSyncExternalStore` — that's only for
+the consent *read*). `useSearchParams` is a request-time dynamic read, so it must sit
+under a **`<Suspense>`** boundary or the static prerender of `/` bails (verified:
+`/` stays `○` static in the build).
+
+**Withdrawing consent (GDPR).** Withdrawal must be as easy as granting. A footer
+**"Cookie settings"** button calls `resetConsent()` → clears the cookie (banner
+returns) and signals Consent Mode `update → denied` for tags already loaded this
+session. Honest limit: a `<script>` already injected can't be *unloaded* without a
+reload, so we stop further collection rather than force a reload.
+
+**Why no `<noscript>` GTM iframe?** The textbook GTM install adds a `<noscript>`
+iframe after `<body>` for JS-disabled clients. We intentionally **omit** it: those
+clients can't run our consent UI either, so the iframe would load GTM **without
+consent** — a direct violation of the opt-in posture. The trade-off (no analytics
+from no-JS visitors) is the privacy-correct choice here.
 
 ---
 
