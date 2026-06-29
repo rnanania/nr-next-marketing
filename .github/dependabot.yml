@@ -9,6 +9,13 @@ updates:
     groups:
       minor-and-patch:
         update-types: ["minor", "patch"]
+    ignore:
+      # ESLint 10 is not yet supported by the Next.js lint stack:
+      # eslint-plugin-jsx-a11y (pinned by eslint-config-next) caps its peer range
+      # at eslint ^9, so `npm ci` fails with ERESOLVE on eslint 10. Hold major
+      # eslint bumps until eslint-config-next ships jsx-a11y support for v10.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
