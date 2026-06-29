@@ -12,7 +12,7 @@ import { Suspense } from "react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { EXPERIMENTS, isVariant } from "@/lib/flags";
-import { readUtmParams } from "@/lib/utm";
+import { readUtmParams, parseUtm, hasUtm, UTM_FIRST_TOUCH_COOKIE } from "@/lib/utm";
 import MarketoForm from "@/components/marketo-form";
 
 export const metadata = {
@@ -44,7 +44,12 @@ async function CampaignHero() {
 
 // Dynamic hole #2 — UTM attribution + the lead form.
 async function CampaignLead({ searchParams }: { searchParams: PageProps<"/campaign">["searchParams"] }) {
-  const utm = readUtmParams(await searchParams);
+  // Last-touch = current URL; first-touch = the persisted edge cookie (proxy.ts).
+  // We attribute to first-touch when we have it (durable across navigation), else
+  // fall back to whatever is on the URL right now.
+  const urlUtm = readUtmParams(await searchParams);
+  const firstTouch = parseUtm((await cookies()).get(UTM_FIRST_TOUCH_COOKIE)?.value);
+  const utm = hasUtm(firstTouch) ? firstTouch : urlUtm;
   return (
     <section id="lead" className="space-y-3">
       <h2 className="text-2xl font-semibold tracking-tight">Talk to sales</h2>
