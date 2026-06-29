@@ -8,6 +8,7 @@
 
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
+import StudyNote from "@/components/study-note";
 
 export default function MarketingLayout({
   children,
@@ -25,6 +26,9 @@ export default function MarketingLayout({
         className="mx-auto w-full max-w-5xl flex-1 scroll-mt-4 px-6 py-12 outline-none"
       >
         {children}
+        {/* UI teaching layer: a per-route "what you're learning here" note, so the
+            live site doubles as a walkthrough of docs/study_plan.md. */}
+        <StudyNote />
       </main>
       <SiteFooter />
     </>
