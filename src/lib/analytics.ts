@@ -45,6 +45,19 @@ export function consentUpdate(state: ConsentState): void {
   gtag("consent", "update", consentSignals(state));
 }
 
+// Has the GTM loader snippet already run this session? Consent Mode v2 requires the
+// `default` signal to come FIRST, and the snippet emits the full default→update
+// handshake itself. So we only push a standalone `update` from the store when GTM is
+// already live (a later toggle) — on a fresh grant we'd otherwise queue an `update`
+// BEFORE the snippet's `default`, which is out of spec (and ignored by GTM anyway).
+function gtmLoaded(): boolean {
+  if (typeof window === "undefined") return false;
+  const w = window as DataLayerWindow & { google_tag_manager?: unknown };
+  if (w.google_tag_manager) return true; // set once a real gtm.js executes
+  // Fallback for the demo/fake container (gtm.js 404s): the loader still pushes gtm.js.
+  return (w.dataLayer ?? []).some((e) => (e as { event?: string }).event === "gtm.js");
+}
+
 // --- Consent store (readable via useSyncExternalStore) ------------------------
 export function getConsent(): Consent | null {
   if (typeof document === "undefined") return null;
@@ -55,10 +68,11 @@ export function getConsent(): Consent | null {
 export function setConsent(value: Consent): void {
   if (typeof document === "undefined") return;
   document.cookie = `${CONSENT_COOKIE}=${value};path=/;max-age=${60 * 60 * 24 * 180};samesite=lax`;
-  // If GTM is already loaded (e.g. user grants, then later toggles), tell Consent
-  // Mode the new state. On a fresh grant GTM isn't loaded yet — the loader replays
-  // the full default→update handshake itself (see google-tag-manager.tsx).
-  consentUpdate(value);
+  // Only signal Consent Mode if GTM is ALREADY loaded (a later toggle). On a fresh
+  // grant GTM isn't loaded yet, so the loader snippet replays the full
+  // default→update handshake itself — pushing here would queue an out-of-order
+  // `update` before that `default`. See gtmLoaded() / google-tag-manager.tsx.
+  if (gtmLoaded()) consentUpdate(value);
   window.dispatchEvent(new Event("consentchange"));
 }
 
@@ -68,7 +82,7 @@ export function setConsent(value: Consent): void {
 export function resetConsent(): void {
   if (typeof document === "undefined") return;
   document.cookie = `${CONSENT_COOKIE}=;path=/;max-age=0;samesite=lax`;
-  consentUpdate("denied");
+  if (gtmLoaded()) consentUpdate("denied"); // only meaningful if GTM already loaded
   window.dispatchEvent(new Event("consentchange"));
 }
 
