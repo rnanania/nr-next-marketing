@@ -39,6 +39,7 @@ const demoNav = [
   { href: "/subscribe", label: "Subscribe" },
   { href: "/metrics", label: "Live Web Vitals" },
   { href: "/architecture", label: "Architecture" },
+  { href: "/system-design", label: "System Design" },
   { href: "/status", label: "Status" },
 ];
 

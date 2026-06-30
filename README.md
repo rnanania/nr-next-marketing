@@ -278,7 +278,7 @@ Study against these versions — they change defaults and APIs vs. older tutoria
 - [x] Day 13 — CI/CD, Deployments & Branching            → [day13_cicd_deployments.md](docs/day13_cicd_deployments.md)
 - [x] Day 14 — Cloud Computing Fundamentals              → [day14_cloud_computing.md](docs/day14_cloud_computing.md)
 - [x] Day 15 — Ops, Reliability & Incident Response      → [day15_ops_incident_response.md](docs/day15_ops_incident_response.md)
-- [ ] Day 16 — System Design: Marketing Site             → day16_system_design.md
+- [x] Day 16 — System Design: Marketing Site             → [day16_system_design.md](docs/day16_system_design.md)
 - [ ] Day 17 — Mock Interview: Technical                 → day17_mock_technical.md
 - [ ] Day 18 — Mock Interview: Behavioral + Stakeholder  → day18_mock_behavioral.md
 

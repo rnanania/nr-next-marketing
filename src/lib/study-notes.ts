@@ -97,6 +97,12 @@ export const STUDY_NOTES: Record<string, StudyNote> = {
     summary:
       "A live status page backed by the same getHealth() the /api/health monitor endpoint uses. Day 15 also wires server-error reporting via instrumentation.ts (onRequestError) + App Router error boundaries (error.tsx / global-error.tsx) through a provider-agnostic reporter — plus an incident runbook in the docs.",
   },
+  "/system-design": {
+    days: "Day 16 · System Design",
+    title: "Scalable, self-serve, CMS-driven site",
+    summary:
+      "The end-to-end design of a high-traffic marketing site marketers self-serve: rendering strategy per route (SSG/ISR/PPR/dynamic) grounded in this app's real routes, the Contentful publish→webhook→revalidateTag loop, caching layers & invalidation, scaling for spikes, multi-environment, and performance budgets.",
+  },
   "/architecture": {
     days: "Day 14 · Cloud Computing",
     title: "Hosting, CDN/edge & cloud primitives",
