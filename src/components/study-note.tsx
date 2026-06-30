@@ -2,7 +2,7 @@
 // The UI teaching layer. Rendered once at the bottom of the shared (marketing)
 // layout, it looks up the current route in STUDY_NOTES and shows a short "what
 // you're learning here" callout — turning the live site into a self-guided tour of
-// docs/study_plan.md. Returns null on routes that have no note.
+// the README study plan. Returns null on routes that have no note.
 //
 // usePathname() is safe in statically prerendered pages (unlike useSearchParams it
 // does NOT opt the route into dynamic rendering), so this adds no perf cost.

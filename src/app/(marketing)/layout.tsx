@@ -27,7 +27,7 @@ export default function MarketingLayout({
       >
         {children}
         {/* UI teaching layer: a per-route "what you're learning here" note, so the
-            live site doubles as a walkthrough of docs/study_plan.md. */}
+            live site doubles as a walkthrough of the README study plan. */}
         <StudyNote />
       </main>
       <SiteFooter />

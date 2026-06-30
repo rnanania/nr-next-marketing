@@ -1,13 +1,13 @@
 // A UI teaching layer: every marketing page carries a short "what you're learning
 // here" note, rendered at the bottom of the page (see components/study-note.tsx).
 // The point is a self-guided tour — a new team member can click through the site
-// and read, in the UI, which part of docs/study_plan.md each page demonstrates.
+// and read, in the UI, which part of the README study plan each page demonstrates.
 //
 // This is the single source of truth: one entry per route. Keyed by pathname so the
 // note is picked automatically in the shared (marketing) layout.
 
 export type StudyNote = {
-  days: string; // study-plan label, e.g. "Days 1–2" — ties back to docs/study_plan.md
+  days: string; // study-plan label, e.g. "Days 1–2" — ties back to the README study plan
   title: string; // the concept this page showcases
   summary: string; // one short paragraph for the walkthrough
 };

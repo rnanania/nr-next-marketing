@@ -425,7 +425,7 @@ marketing site can be **as fast as static** and **as fresh as a CMS** at the sam
 time — the core argument for Next.js on high-traffic marketing sites.
 
 ## Related docs
-- `docs/study_plan.md` — the day-by-day study tracker.
+- [`../README.md`](../README.md) — the day-by-day study plan & tracker.
 - `docs/day02_nextjs_rendering.md`, `day03_nextjs_data_caching.md` — rendering & caching depth.
 - `docs/day10_seo.md` — SEO as code (Station 6).
 - `docs/day11_contentful_cms.md`, `day12_marketing_integrations.md` — CMS, A/B, UTM.

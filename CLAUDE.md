@@ -8,8 +8,8 @@ Senior Front-End role (React / Next.js / Tailwind / Contentful). Stack: **Next.j
 **TypeScript**, **Tailwind v4**, **shadcn/ui + Radix**. Brand name: **Pace**.
 
 Each "day" teaches a topic by building **real, runnable** features into this one app,
-then writing a study doc. Days 1–13 are done; **Days 14–18 remain** (see
-`docs/study_plan.md`).
+then writing a study doc. Days 1–13 are done; **Days 14–18 remain** (see the study
+plan in `README.md`).
 
 ## Commands
 ```bash
@@ -22,7 +22,7 @@ npm test           # vitest (unit tests for pure utils)
 
 ## How to continue the study (the per-day method — follow this)
 When asked to "do Day N" (or continue), replicate the established loop:
-1. **Pick** the next unchecked day in `docs/study_plan.md` (it lists topic + build task + interview Qs).
+1. **Pick** the next unchecked day in the study plan in `README.md` (it lists topic + build task + interview Qs).
 2. **Read the Next 16 docs first.** Per `AGENTS.md`, this Next differs from training
    data — read the relevant guide under `node_modules/next/dist/docs/` before writing
    any Next.js code, and heed deprecations.
@@ -34,7 +34,7 @@ When asked to "do Day N" (or continue), replicate the established loop:
    computed checks (e.g. contrast ratios, parsing JSON-LD). Be **honest** about what
    couldn't be run (Lighthouse/axe/real Contentful/Marketo/GTM use fixtures/fallbacks).
 5. **Write the study doc** `docs/dayNN_<topic>.md` in the established format (below).
-6. **Tick the day** in `docs/study_plan.md`.
+6. **Tick the day** in the study plan in `README.md`.
 7. **Offer a compact commit message** (don't commit/push unless asked; `main` push
    auto-deploys to Vercel).
 
@@ -69,13 +69,13 @@ table → numbered **concept sections** → **Build Exercise** table (what/where
 ## Where things live
 - **App:** `src/app/(marketing)/*` (pages), `src/app/api/*` (route handlers),
   `src/proxy.ts` (edge A/B), `src/components` (+ `ui/` = shadcn), `src/lib` (+ `cms/`).
-- **Study:** `docs/` — `study_plan.md` (the tracker + day index), `dayNN_*.md` (notes),
-  `job.md` (the target JD), `deployment_vercel.md` (deploy guide).
+- **Study:** the study plan lives in `README.md` (schedule + tracker + day index);
+  `docs/` holds `dayNN_*.md` (notes) and `deployment_vercel.md` (deploy guide).
 - **Tests:** `src/**/*.test.ts` (vitest; pure utils only — avoid `server-only` imports).
 - **CI:** `.github/workflows/ci.yml` (gates); `deploy.yml` is manual-only.
 
 ## Remaining work
-Days **14–18** in `docs/study_plan.md`: Cloud Computing, Ops/Reliability/Incident
+Days **14–18** in the `README.md` study plan: Cloud Computing, Ops/Reliability/Incident
 Response, System Design, Mock Interview (Technical), Mock Interview (Behavioral).
 
 ## Deploy
