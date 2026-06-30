@@ -38,6 +38,7 @@ const demoNav = [
   { href: "/integrations", label: "Integrations" },
   { href: "/subscribe", label: "Subscribe" },
   { href: "/metrics", label: "Live Web Vitals" },
+  { href: "/architecture", label: "Architecture" },
 ];
 
 export default function SiteHeader() {

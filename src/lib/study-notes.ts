@@ -91,6 +91,12 @@ export const STUDY_NOTES: Record<string, StudyNote> = {
     summary:
       "A responsive hero + feature grid built entirely on Tailwind v4 @theme tokens (brand-*, surface, ink, radius, spacing). The whole look pulls from one place in globals.css, so it's consistent and re-themeable.",
   },
+  "/architecture": {
+    days: "Day 14 · Cloud Computing",
+    title: "Hosting, CDN/edge & cloud primitives",
+    summary:
+      "How this site is hosted and cached, mapped to AWS/Azure/GCP equivalents (static+CDN, serverless, edge compute, DNS, secrets, IAM). Static-first so the CDN absorbs traffic spikes; only cache misses hit compute. The live 'edge layer' box reads request-time geo headers to prove the CDN edge is real.",
+  },
   "/metrics": {
     days: "Day 9 · Core Web Vitals",
     title: "Public, self-hosted RUM",

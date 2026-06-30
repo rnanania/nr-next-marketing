@@ -276,7 +276,7 @@ Study against these versions — they change defaults and APIs vs. older tutoria
 - [x] Day 11 — Contentful / Headless CMS                 → [day11_contentful_cms.md](docs/day11_contentful_cms.md)
 - [x] Day 12 — Marketing Integrations & A/B Testing      → [day12_marketing_integrations.md](docs/day12_marketing_integrations.md)
 - [x] Day 13 — CI/CD, Deployments & Branching            → [day13_cicd_deployments.md](docs/day13_cicd_deployments.md)
-- [ ] Day 14 — Cloud Computing Fundamentals              → day14_cloud_computing.md
+- [x] Day 14 — Cloud Computing Fundamentals              → [day14_cloud_computing.md](docs/day14_cloud_computing.md)
 - [ ] Day 15 — Ops, Reliability & Incident Response      → day15_ops_incident_response.md
 - [ ] Day 16 — System Design: Marketing Site             → day16_system_design.md
 - [ ] Day 17 — Mock Interview: Technical                 → day17_mock_technical.md
