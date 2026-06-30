@@ -39,6 +39,7 @@ const demoNav = [
   { href: "/subscribe", label: "Subscribe" },
   { href: "/metrics", label: "Live Web Vitals" },
   { href: "/architecture", label: "Architecture" },
+  { href: "/status", label: "Status" },
 ];
 
 export default function SiteHeader() {

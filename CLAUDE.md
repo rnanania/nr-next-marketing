@@ -8,7 +8,7 @@ Senior Front-End role (React / Next.js / Tailwind / Contentful). Stack: **Next.j
 **TypeScript**, **Tailwind v4**, **shadcn/ui + Radix**. Brand name: **Pace**.
 
 Each "day" teaches a topic by building **real, runnable** features into this one app,
-then writing a study doc. Days 1–14 are done; **Days 15–18 remain** (see the study
+then writing a study doc. Days 1–15 are done; **Days 16–18 remain** (see the study
 plan in `README.md`).
 
 ## Commands
@@ -75,8 +75,8 @@ table → numbered **concept sections** → **Build Exercise** table (what/where
 - **CI:** `.github/workflows/ci.yml` (gates); `deploy.yml` is manual-only.
 
 ## Remaining work
-Days **15–18** in the `README.md` study plan: Ops/Reliability/Incident Response,
-System Design, Mock Interview (Technical), Mock Interview (Behavioral).
+Days **16–18** in the `README.md` study plan: System Design, Mock Interview
+(Technical), Mock Interview (Behavioral).
 
 ## Deploy
 Live on **Vercel** via native Git integration — every push to `main` auto-deploys prod,

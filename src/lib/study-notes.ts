@@ -91,6 +91,12 @@ export const STUDY_NOTES: Record<string, StudyNote> = {
     summary:
       "A responsive hero + feature grid built entirely on Tailwind v4 @theme tokens (brand-*, surface, ink, radius, spacing). The whole look pulls from one place in globals.css, so it's consistent and re-themeable.",
   },
+  "/status": {
+    days: "Day 15 · Ops & Reliability",
+    title: "Observability, health checks & incident response",
+    summary:
+      "A live status page backed by the same getHealth() the /api/health monitor endpoint uses. Day 15 also wires server-error reporting via instrumentation.ts (onRequestError) + App Router error boundaries (error.tsx / global-error.tsx) through a provider-agnostic reporter — plus an incident runbook in the docs.",
+  },
   "/architecture": {
     days: "Day 14 · Cloud Computing",
     title: "Hosting, CDN/edge & cloud primitives",
